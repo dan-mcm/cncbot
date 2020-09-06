@@ -40,16 +40,21 @@ function onMessageHandler (target, context, msg, self) {
     client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
   } else if (msg.startsWith('!getrank')) {
+
+    // accounting for user error only entering '!getrank' with no args
+    if(args.length < 2){
+      return client.say(target, `Please specify a username and gametype (default td): !getrank danku ra`)
+    }
+
     // '40' default for Danku player-id
     const rank = getRank(args[1], args[2])
     rank.then(res => {
       // handle success
-      console.log(`validating msg received ${args}`)
-      console.log(`Rank for ${res.data.name}: ${res.data.rank}. Total points: ${res.data.points}. Games won: ${res.data.wins}. Games lost: ${res.data.losses}.`)
-      console.log(`* Executed !${args[0]} command`);
-      if(res.data.length===0){
+      if(res.data.length === 0){
+        console.log(`* Executed !${args[0]} command -> Failed to find ${args[1]} on leaderboard`)
         return client.say(target, `No leaderboard results found for user: ${args[1]}`)
       } else {
+        console.log(`* Executed !${args[0]} command -> Rank for ${res.data[0].player_name}: ${res.data[0].rank}. Total points: ${Math.ceil(res.data[0].points)}. Games won: ${res.data[0].wins}. Games lost: ${res.data[0].losses}.`);
         // assumption result[0] in array is the most accurate and only using that one
         return client.say(target, `Current ${args[2] || 'td' } rank for ${res.data[0].player_name}: ${res.data[0].rank}; Total points: ${Math.ceil(res.data[0].points)}; Games won: ${res.data[0].wins}; Games lost: ${res.data[0].losses}.`)
       }
