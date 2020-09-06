@@ -1,4 +1,4 @@
-#CNCbot
+# CNCbot
 
 A twitch bot for enabling quick user lookup of player ranks in chat using the public OBS API - docs available [here](https://cnc.community/news/official-news/new-streamer-cc-remastered-apis-available-for-obs)
 
