@@ -41,13 +41,18 @@ function onMessageHandler (target, context, msg, self) {
     console.log(`* Executed ${commandName} command`);
   } else if (msg.startsWith('!getrank')) {
     // '40' default for Danku player-id
-    const rank = getRank('40', args[2])
+    const rank = getRank(args[1], args[2])
     rank.then(res => {
       // handle success
       console.log(`validating msg received ${args}`)
       console.log(`Rank for ${res.data.name}: ${res.data.rank}. Total points: ${res.data.points}. Games won: ${res.data.wins}. Games lost: ${res.data.losses}.`)
       console.log(`* Executed !${args[0]} command`);
-      return client.say(target, `Current ${args[2] || 'td' } rank for ${res.data.name}: ${res.data.rank}; Total points: ${Math.ceil(res.data.points)}; Games won: ${res.data.wins}; Games lost: ${res.data.losses}.`)
+      if(res.data.length===0){
+        return client.say(target, `No leaderboard results found for user: ${args[1]}`)
+      } else {
+        // assumption result[0] in array is the most accurate and only using that one
+        return client.say(target, `Current ${args[2] || 'td' } rank for ${res.data[0].player_name}: ${res.data[0].rank}; Total points: ${Math.ceil(res.data[0].points)}; Games won: ${res.data[0].wins}; Games lost: ${res.data[0].losses}.`)
+      }
      }
     )
     .catch(err => {
@@ -83,6 +88,6 @@ function getRank(playername, game) {
     gameQuery = 'tiberian-dawn'
   }
 
-  return axios.get(`https://cnc.community/api/leaderboard/${gameQuery}/player/${playername}/`)
+  return axios.get(`https://cnc.community/api/leaderboard/${gameQuery}/players/search?search=${playername}`)
 
 }
