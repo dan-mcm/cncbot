@@ -4,17 +4,35 @@ A twitch bot for enabling quick user lookup of player ranks in chat using the pu
 
 ## Local Setup
 
-The bot requires the configuration of the following variables, dotenv is enabled on the project to allow reading these from a local file .env in the root directory of the project.
+### Bot Configuration & Authentication
+
+You will need to register your own twitch bot to enable tmi.js to post to Twitch. Bots can be registered with Twitch [here](https://dev.twitch.tv/console).
+
+The bot requires the configuration of the following global variables:
 
 ```
-USERNAME="CNCbot"
-OAUTH="oauth:yourtmioauthtoken"
+USERNAME="your-registered-bot-name"
+OAUTH="oauth:your-tmi-oauth-token"
 CHANNEL="yourtwitchchannelname"
 ```
 
+As `dotenv` is enabled on the project all you need to do is create a file called `.env` in the root of the project and copy and paste in the above variables with your own values.
+
+
 TMI oauth token configuration can be obtained here `https://twitchapps.com/tmi/`
 
-```bash
+
+## Installation & Running
+
+This project is written in JS and requires node and either npm or yarn to run. (if using npm replace commands below with `npm` instead of `yarn`)
+
+* To install node see [here](https://nodejs.org/en/download/)
+* To install yarn see [here](https://classic.yarnpkg.com/en/docs/install/#windows-stable)
+* To install npm see [here](https://www.npmjs.com/get-npm)
+
+Once you have node & either yarn or npm setup open a [cmd terminal](https://devblogs.microsoft.com/commandline/introducing-windows-terminal/) and run the following
+
+```
 // install dependencies
 yarn install
 
@@ -25,10 +43,10 @@ yarn start
 Note: bot will only run so long as you have it running locally - this is currently not configured on a public server for permanent access.
 
 
-## Sample Usage
+### Sample Usage
 
 ![Twitch Chat Sample](screenshots/screenshot.png)
 
-## To Do
+## Questions / Feature Requests
 
-* Currently investigating if API endpoint is available to search for users by name rather than ID -> this is currently hardcoded to Danku's player id for testing.
+Looking for extending functionality or have a question/issue with starting the bot? Feel free to open up an issue ticket [here](https://github.com/dan-mcm/cncbot/issues). I'll aim to get back to you as soon as I can.
