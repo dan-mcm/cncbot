@@ -27,7 +27,7 @@ Note: bot will only run so long as you have it running locally - this is current
 
 ## Sample Usage
 
-![Twitch Chat Sample](screenshots/screenshot.png")
+![Twitch Chat Sample](screenshots/screenshot.png)
 
 ## To Do
 
