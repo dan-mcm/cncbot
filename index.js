@@ -35,11 +35,7 @@ function onMessageHandler (target, context, msg, self) {
   const args = msg.slice(1).split(' ');
 
   // If the command is known, let's execute it
-  if (msg.startsWith('!dice')) {
-    const num = rollDice();
-    client.say(target, `You rolled a ${num}`);
-    console.log(`* Executed ${commandName} command`);
-  } else if (msg.startsWith('!getrank')) {
+  if (msg.startsWith('!getrank')) {
 
     // accounting for user error only entering '!getrank' with no args
     if(args.length < 2){
@@ -66,13 +62,6 @@ function onMessageHandler (target, context, msg, self) {
       }
     )
   }
-}
-
-
-// Function called when the "dice" command is issued
-function rollDice () {
-  const sides = 6;
-  return Math.floor(Math.random() * sides) + 1;
 }
 
 // Called every time the bot connects to Twitch chat
