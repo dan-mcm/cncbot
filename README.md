@@ -2,6 +2,12 @@
 
 A twitch bot for enabling quick user lookup of player ranks in chat using the public OBS API - docs available [here](https://cnc.community/news/official-news/new-streamer-cc-remastered-apis-available-for-obs)
 
+Note: If you wish to enable this functionality with Nightbot `WarMachine` has advised this is configurable via nightbot with the following command
+
+```
+$(eval a = `$(urlfetch json https://cnc.community/api/leaderboard/tiberian-dawn/players/search?search=$(query))`; js = JSON.parse(a); `[CnC Ladder] Player Name: ${js[0].player_name} | Rank: ${js[0].rank} | Wins: ${js[0].wins} | Losses: ${js[0].losses} | Points: ${js[0].points}`)
+```
+
 ## Local Setup
 
 ### Bot Configuration & Authentication
